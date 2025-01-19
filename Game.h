@@ -17,6 +17,7 @@ public:
 
 	void handleEvents(SDL_Event& event);
 	void handleInput(SDL_Event& event);
+	void draw(SDL_Renderer* renderer);
 	void update(float deltaTime);
 };
 

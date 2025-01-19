@@ -1,7 +1,5 @@
 #include "Game.h"
 
-
-
 Game::Game() {
 
 	// Initialize SDL
@@ -67,4 +65,18 @@ void Game::handleInput(SDL_Event& event) {
 
 void Game::update(float deltaTime) {
 
+}
+
+
+void Game::draw(SDL_Renderer* renderer) {
+	// Clear the renderer
+	SDL_RenderClear(renderer);
+
+	// Set the background color to black
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
+	// Draw tiles
+
+	// Updates the renderer
+	SDL_RenderPresent(renderer);
 }
