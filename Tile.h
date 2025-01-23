@@ -11,6 +11,7 @@ class Tile
 	enum Type {
 		BACKGROUND
 	};
+
 public:
 	// Tile position, rect, and type
 	Vector2D pos;

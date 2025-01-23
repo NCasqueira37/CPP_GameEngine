@@ -37,6 +37,14 @@ Game::Game() {
 			// Create tiles
 			Tile::createTiles(windowWidth, windowHeight, tileSize, gameManager.tiles);
 
+			// Delta time variables
+			Uint64 previousFrame = SDL_GetPerformanceCounter();
+			Uint64 currentFrame = SDL_GetPerformanceCounter();
+			float deltaTime = 0;
+
+			// FPS
+			int fps = 0;
+
 			// Main Loop
 			isRunning = true;
 			SDL_Event event{};
@@ -50,8 +58,15 @@ Game::Game() {
 				handleInput(event);
 
 				// Calculate deltaTime
+				currentFrame = SDL_GetPerformanceCounter();
+				deltaTime = static_cast<double>(currentFrame - previousFrame) / SDL_GetPerformanceFrequency();	
+				previousFrame = currentFrame;
+
+				// FPS
+				fps = 1 / deltaTime;
 
 				// Handle Update
+				update(deltaTime);
 
 				// handle draw
 				draw(renderer);
@@ -79,7 +94,7 @@ void Game::handleInput(SDL_Event& event) {
 
 
 void Game::update(float deltaTime) {
-
+	//std::cout << deltaTime << "\n";
 }
 
 
