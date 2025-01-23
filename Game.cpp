@@ -1,12 +1,13 @@
 #include "Game.h"
 
+GameManager gameManager;
 Game::Game() {
 
 	// Initialize SDL
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	// Create window
-	window = SDL_CreateWindow("window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
+	window = SDL_CreateWindow("window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowWidth, windowHeight, 0);
 	if (window == nullptr) {
 		std::cout << SDL_GetError() << std::endl;
 	}
@@ -19,6 +20,9 @@ Game::Game() {
 		else {
 			// window and renderer created successfully
 
+			// Set blend mode for transparent textures
+			SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
 			// Open audio
 			if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2040) < 0) {
 				std::cout << Mix_GetError() << std::endl;
@@ -30,21 +34,27 @@ Game::Game() {
 				std::cout << TTF_GetError() << std::endl;
 			}
 
+			// Create tiles
+			Tile::createTiles(windowWidth, windowHeight, tileSize, gameManager.tiles);
+
 			// Main Loop
 			isRunning = true;
 			SDL_Event event{};
 			while (isRunning) {
 				SDL_PollEvent(&event);
 
-				// Calculate deltaTime
-
-				// Handle Update
-
 				// Handle Events
 				handleEvents(event);
 
 				// Handle Input
 				handleInput(event);
+
+				// Calculate deltaTime
+
+				// Handle Update
+
+				// handle draw
+				draw(renderer);
 			}
 		}
 	}
@@ -59,7 +69,12 @@ void Game::handleEvents(SDL_Event& event) {
 
 
 void Game::handleInput(SDL_Event& event) {
-
+	if (event.type == SDL_MOUSEBUTTONDOWN) {
+		if (event.button.button == SDL_BUTTON_LEFT) {
+			Tile t = Tile::getTile(tileSize, gameManager.tiles);
+			std::cout << "x: " << t.pos.x << ", y: " << t.pos.y << std::endl;
+		}
+	}
 }
 
 
@@ -76,6 +91,9 @@ void Game::draw(SDL_Renderer* renderer) {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 	// Draw tiles
+	for (auto& t : gameManager.tiles) {
+		t.draw(renderer);
+	}
 
 	// Updates the renderer
 	SDL_RenderPresent(renderer);

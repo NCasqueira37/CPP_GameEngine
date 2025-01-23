@@ -1,8 +1,13 @@
 #pragma once
+#include "Tile.h"
+
 class GameManager
 {
 
 public:
-	
-	GameManager();
+	// All tiles in game
+	std::vector<Tile> tiles;
+
+	// Default constructor
+	GameManager() = default;
 };

@@ -4,11 +4,17 @@
 #include "SDL.h"
 #include "SDL_ttf.h"
 #include "SDL_mixer.h"
+#include "GameManager.h"
+
 
 class Game
 {
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
+
+	int windowWidth = 800;
+	int windowHeight = 600;
+	double tileSize = 50;
 
 	bool isRunning = false;
 
