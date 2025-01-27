@@ -1,7 +1,7 @@
 #include "Tile.h"
 
 
-Tile::Tile(Vector2D pos, int tileSize, std::vector<Tile>& tiles) {
+Tile::Tile(Vector2I pos, int tileSize, std::vector<Tile>& tiles) {
 	// Set tile position
 	this->pos.x = pos.x;
 	this->pos.y = pos.y;
@@ -23,7 +23,7 @@ Tile::Tile(Vector2D pos, int tileSize, std::vector<Tile>& tiles) {
 void Tile::createTiles(int w, int h, int tileSize, std::vector<Tile>& tiles) {
 	for (int x = 0; x < w / tileSize; x++) {
 		for (int y = 0; y < h / tileSize; y++) {
-			Tile t(Vector2D(x, y), tileSize, tiles);
+			Tile t(Vector2I(x, y), tileSize, tiles);
 		}
 	}
 }
@@ -49,22 +49,24 @@ void Tile::draw(SDL_Renderer* renderer) const {
 }
 
 
-const Tile Tile::getTile(int tileSize, std::vector<Tile>& tiles) {
+const Tile& Tile::getTile(int tileSize, std::vector<Tile>& tiles) {
 	int x, y;
 	SDL_GetMouseState(&x, &y);
 
 	for (auto& t : tiles) {
-		if (x / tileSize == t.pos.x && y / tileSize == t.pos.y) {
+		if (floor(x / tileSize) == t.pos.x && floor(y / tileSize) == t.pos.y) {
 			return t;
 		}
 	}
+	throw std::runtime_error("No tile found\n");
 }
 
 
-const Tile Tile::getTile(int x, int y, int tileSize, std::vector<Tile>& tiles) {
+const Tile& Tile::getTile(int x, int y, int tileSize, std::vector<Tile>& tiles) {
 	for (auto& t : tiles) {
-		if (x / tileSize == t.pos.x && y / tileSize == t.pos.y) {
+		if (floor(x / tileSize) == t.pos.x && floor(y / tileSize) == t.pos.y) {
 			return t;
 		}
 	}
+	throw std::runtime_error("No tile found\n");
 }
