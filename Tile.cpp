@@ -1,14 +1,14 @@
 #include "Tile.h"
 
 
-Tile::Tile(Vector2I pos, int tileSize, std::vector<Tile>& tiles) {
+Tile::Tile(Vector2D pos, int tileSize, std::vector<Tile>& tiles) {
 	// Set tile position
 	this->pos.x = pos.x;
 	this->pos.y = pos.y;
 
 	// Set rect position and size
-	rect.x = pos.x * tileSize;
-	rect.y = pos.y * tileSize;
+	rect.x = (int)pos.x * tileSize;
+	rect.y = (int)pos.y * tileSize;
 	rect.w = tileSize;
 	rect.h = tileSize;
 
@@ -23,7 +23,7 @@ Tile::Tile(Vector2I pos, int tileSize, std::vector<Tile>& tiles) {
 void Tile::createTiles(int w, int h, int tileSize, std::vector<Tile>& tiles) {
 	for (int x = 0; x < w / tileSize; x++) {
 		for (int y = 0; y < h / tileSize; y++) {
-			Tile t(Vector2I(x, y), tileSize, tiles);
+			Tile t(Vector2D(x, y), tileSize, tiles);
 		}
 	}
 }

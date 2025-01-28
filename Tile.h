@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "Vector2I.h"
+#include "Vector2D.h"
 #include "SDL2/SDL2_MAIN/include/SDL.h"
 #include "cmath"
 
@@ -14,13 +14,13 @@ class Tile
 
 public:
 	// Tile position, rect, and type
-	Vector2I pos;
+	Vector2D pos;
 	SDL_Rect rect;
 	Type type = BACKGROUND;
 
 	// Constructors
 	Tile() = default;
-	Tile(Vector2I pos, int tileSize, std::vector<Tile>& tiles);
+	Tile(Vector2D pos, int tileSize, std::vector<Tile>& tiles);
 	
 	// Static function to create tiles, called only once
 	static void createTiles(int w, int h, int tileSize, std::vector<Tile>& tiles);

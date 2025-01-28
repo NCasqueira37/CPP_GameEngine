@@ -5,6 +5,8 @@
 #include "SDL_ttf.h"
 #include "SDL_mixer.h"
 #include "GameManager.h"
+#include "AudioManager.h"
+#include "TextureManager.h"
 
 
 class Game

@@ -1,6 +1,9 @@
 #include "Game.h"
 
 GameManager gameManager;
+AudioManager audioManager;
+TextureManager textureManager;
+
 Game::Game() {
 
 	// Initialize SDL
@@ -34,8 +37,14 @@ Game::Game() {
 				std::cout << TTF_GetError() << std::endl;
 			}
 
+			// Load Texture files
+			
+
+			// Load Audio files
+			audioManager.loadSound("Data/Sounds/laserShoot.wav", "Laser1");
+
 			// Create tiles
-			Tile::createTiles(windowWidth, windowHeight, tileSize, gameManager.tiles);
+			Tile::createTiles(windowWidth, windowHeight, (int)tileSize, gameManager.tiles);
 
 			// Delta time variables
 			Uint64 previousFrame = SDL_GetPerformanceCounter();
@@ -63,7 +72,7 @@ Game::Game() {
 				previousFrame = currentFrame;
 
 				// FPS
-				fps = 1 / deltaTime;
+				fps = (1 / deltaTime);
 
 				// Handle Update
 				update(deltaTime);
@@ -86,8 +95,7 @@ void Game::handleEvents(SDL_Event& event) {
 void Game::handleInput(SDL_Event& event) {
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
-			Tile t = Tile::getTile(tileSize, gameManager.tiles);
-			std::cout << "x: " << t.pos.x << ", y: " << t.pos.y << std::endl;
+
 		}
 	}
 }
