@@ -7,6 +7,7 @@
 #include "GameManager.h"
 #include "AudioManager.h"
 #include "TextureManager.h"
+#include "FontManager.h"
 
 
 class Game

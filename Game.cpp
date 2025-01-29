@@ -3,6 +3,7 @@
 GameManager gameManager;
 AudioManager audioManager;
 TextureManager textureManager;
+FontManager fontManager;
 
 Game::Game() {
 
@@ -39,6 +40,8 @@ Game::Game() {
 
 			// Load Texture files
 			
+			// Load Font files
+			fontManager.loadFont("Data/Fonts/square-deal.ttf", "SquareDeal", 100);
 
 			// Load Audio files
 			audioManager.loadSound("Data/Sounds/laserShoot.wav", "Laser1");
