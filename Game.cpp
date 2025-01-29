@@ -41,10 +41,10 @@ Game::Game() {
 			// Load Texture files
 			
 			// Load Font files
-			fontManager.loadFont("Data/Fonts/square-deal.ttf", "SquareDeal", 100);
+			fontManager.loadFont("Content/Fonts/square-deal.ttf", "SquareDeal", 100);
 
 			// Load Audio files
-			audioManager.loadSound("Data/Sounds/laserShoot.wav", "Laser1");
+			audioManager.loadSound("Content/Sounds/laserShoot.wav", "Laser1");
 
 			// Create tiles
 			Tile::createTiles(windowWidth, windowHeight, (int)tileSize, gameManager.tiles);
