@@ -1,12 +1,13 @@
 #include "Game.h"
 
-GameManager gameManager;
-AudioManager audioManager;
-TextureManager textureManager;
-FontManager fontManager;
+
 
 Game::Game() {
+	init();
+}
 
+
+void Game::init() {
 	// Initialize SDL
 	SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -39,12 +40,10 @@ Game::Game() {
 			}
 
 			// Load Texture files
-			
+
 			// Load Font files
-			fontManager.loadFont("Content/Fonts/square-deal.ttf", "SquareDeal", 100);
 
 			// Load Audio files
-			audioManager.loadSound("Content/Sounds/laserShoot.wav", "Laser1");
 
 			// Create tiles
 			Tile::createTiles(windowWidth, windowHeight, (int)tileSize, gameManager.tiles);
@@ -71,7 +70,7 @@ Game::Game() {
 
 				// Calculate deltaTime
 				currentFrame = SDL_GetPerformanceCounter();
-				deltaTime = static_cast<double>(currentFrame - previousFrame) / SDL_GetPerformanceFrequency();	
+				deltaTime = static_cast<double>(currentFrame - previousFrame) / SDL_GetPerformanceFrequency();
 				previousFrame = currentFrame;
 
 				// FPS

@@ -21,9 +21,15 @@ class Game
 
 	bool isRunning = false;
 
+	GameManager gameManager;
+	AudioManager audioManager;
+	TextureManager textureManager;
+	FontManager fontManager;
+
 public:
 	Game();
 
+	void init();
 	void handleEvents(SDL_Event& event);
 	void handleInput(SDL_Event& event);
 	void draw(SDL_Renderer* renderer);
