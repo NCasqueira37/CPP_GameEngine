@@ -4,9 +4,12 @@
 void AudioManager::loadSound(std::string filePath, std::string soundName) {
 	Mix_Chunk* sound = Mix_LoadWAV(filePath.c_str());
 	if (sound == nullptr)
-		std::cout << "Error loading sound\n";
+		try {
 		throw std::runtime_error("Error loading sound\n");
-
+	}
+	catch (std::runtime_error& e) {
+		std::cout << e.what() << std::endl;
+	}
 	sounds.insert(std::make_pair(soundName, sound));
 }
 
