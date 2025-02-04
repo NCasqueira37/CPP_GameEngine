@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "Vector2D.h"
-#include "SDL2/SDL2_MAIN/include/SDL.h"
+#include "SDL.h"
 #include "cmath"
 
 

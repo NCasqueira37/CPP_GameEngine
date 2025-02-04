@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include "SDL.h"
-#include "SDL2/SDL2_IMAGE/include/SDL_image.h"
+#include "SDL_image.h"
 
 
 class TextureManager

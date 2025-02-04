@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "SDL2/SDL2_MAIN/include/SDL.h"
+#include "SDL.h"
 #include "Vector2D.h"
 
 class Entity
